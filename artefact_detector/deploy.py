@@ -9,7 +9,8 @@ def run_artefact_detector(image,model = None):
 	if model == None:
 		pkg = importlib_resources.files("artefact_detector")
 		model_data = pkg/"artefact_detector.default_model"
-		model = importlib_resources.as_file(model_data)
+		with importlib_resources.as_file(model_data) as path:
+			model = path
 	model = pickle.loads(open(model, "rb").read())
 	# load the input image, convert it to the HSV color space, and
 	# quantify the image in the *same manner* as we did during training
