@@ -2,9 +2,14 @@ from helpers import quantify_image
 import argparse
 import pickle
 import cv2
+import importlib_resources
 
-def run_artefact_detector(image,model = 'artefact_detector.default_model'):
+def run_artefact_detector(image,model = None):
 	# load the anomaly detection model
+	if model == None:
+		pkg = importlib_resources.files("artefact_detector")
+		model_data = pkg/"artefact_detector.default_model"
+		model = importlib_resources.as_file(model_data)
 	model = pickle.loads(open(model, "rb").read())
 	# load the input image, convert it to the HSV color space, and
 	# quantify the image in the *same manner* as we did during training
