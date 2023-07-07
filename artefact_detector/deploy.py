@@ -4,14 +4,13 @@ import pickle
 import cv2
 import importlib_resources
 
-def run_artefact_detector(image,model = None):
+def run_artefact_detector(image,model_path = None):
 	# load the anomaly detection model
-	if model == None:
+	if model_path == None:
 		pkg = importlib_resources.files("artefact_detector")
-		model_data = pkg/"artefact_detector.default_model"
-		with importlib_resources.as_file(model_data) as path:
-			model = path
-	model = pickle.loads(open(model, "rb").read())
+		with importlib_resources.as_file(pkg/'artefact_detector.default_model') as path:
+			model_path = path
+	model = pickle.loads(open(model_path, "rb").read())
 	# load the input image, convert it to the HSV color space, and
 	# quantify the image in the *same manner* as we did during training
 	image = cv2.imread(image)
