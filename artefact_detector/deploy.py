@@ -3,7 +3,7 @@ import argparse
 import pickle
 import cv2
 
-def run_artefact_detector(image,model = 'artefact_detector.model'):
+def run_artefact_detector(image,model = 'artefact_detector.default_model'):
 	# load the anomaly detection model
 	model = pickle.loads(open(model, "rb").read())
 	# load the input image, convert it to the HSV color space, and
