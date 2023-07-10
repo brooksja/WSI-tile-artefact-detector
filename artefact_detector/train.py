@@ -2,7 +2,7 @@
 
 # Following https://pyimagesearch.com/2020/01/20/intro-to-anomaly-detection-with-opencv-computer-vision-and-scikit-learn/
 
-from .helpers import load_dataset
+from helpers import load_dataset
 from sklearn.ensemble import IsolationForest
 import argparse
 import pickle
