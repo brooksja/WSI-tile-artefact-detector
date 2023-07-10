@@ -3,6 +3,7 @@ import argparse
 import pickle
 import cv2
 import importlib_resources
+import numpy as np
 
 def run_artefact_detector(image,model_path = None):
 	# load the anomaly detection model
