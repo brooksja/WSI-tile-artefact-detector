@@ -1,4 +1,4 @@
-from helpers import quantify_image
+from .helpers import quantify_image
 import argparse
 import pickle
 import cv2
