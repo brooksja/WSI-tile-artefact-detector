@@ -13,7 +13,7 @@ def run_artefact_detector(image,model_path = None):
 	model = pickle.loads(open(model_path, "rb").read())
 	# load the input image, convert it to the HSV color space, and
 	# quantify the image in the *same manner* as we did during training
-	image = cv2.imread(image)
+	image = np.array(image)
 	hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 	features = quantify_image(hsv, bins=(4,6,3))
 
