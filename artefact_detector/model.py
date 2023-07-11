@@ -3,6 +3,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import importlib_resources
+import torchvision.transforms as T
 
 class Artefact_detector(pl.LightningModule):
     def __init__(self):
@@ -46,3 +47,11 @@ class Artefact_detector(pl.LightningModule):
         with importlib_resources.as_file(pkg/'default_model.ckpt') as path:
             weights = path
         return weights
+    
+    def default_transforms(self):
+        transform = T.Compose([
+            T.ToTensor(),
+            T.Resize(225,antialias=True),
+            T.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])
+        ])
+        return transform
